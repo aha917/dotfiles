@@ -1,0 +1,23 @@
+# .stow-local-ignore file using Perl Regular Expressions.
+# This file must be placed inside the package directory (e.g., ~/dotfiles/zsh/).
+
+# 1. Ignore the README.md file in the root of the package.
+# This uses the basename matching, which matches the full filename exactly.
+# You do not need the ^/ anchor for the basename match.
+README\.md
+
+# 2. Re-add the standard ignore for the .git directory.
+# Since this must match the directory and everything beneath it,
+# it is safest to use a full relative path match (starting with ^/).
+
+# Ignore the .git directory itself (e.g., /.git)
+# This prevents Stow from even trying to descend into the directory.
+^\/\.git$
+
+# Ignore any file or directory contained within .git (e.g., /.git/config)
+# The .* is necessary to match everything after /.git/
+^\/\.git\/.*
+
+# 3. Always ignore the ignore file itself.
+# Stow usually does this automatically, but it's good practice to ensure.
+\.stow\-local\-ignore
